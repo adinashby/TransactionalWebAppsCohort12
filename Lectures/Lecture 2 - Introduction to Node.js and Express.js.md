@@ -6,7 +6,7 @@
 2. [2. Building a Simple Server with Express.js](#building-a-simple-server-with-expressjs)
     - [2.1. Setting Up Express.js](#setting-up-expressjs)
     - [2.2. Creating Routes](#creating-routes)
-    - [2.3. Middleware](#middleware)
+    - [2.3. Middleware](#2.3.middleware)
 
 ## 1. Introduction to Node.js
 
