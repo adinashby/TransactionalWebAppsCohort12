@@ -1,12 +1,12 @@
 ## Table of Contents
 
-1. [1. Introduction to Node.js](#introduction-to-nodejs)
-    - [1.1. Setting Up Node.js](#setting-up-nodejs)
-    - [1.2. Modules and NPM](#modules-and-npm)
-2. [2. Building a Simple Server with Express.js](#building-a-simple-server-with-expressjs)
-    - [2.1. Setting Up Express.js](#setting-up-expressjs)
-    - [2.2. Creating Routes](#creating-routes)
-    - [2.3. Middleware](#2.3.middleware)
+1. [1. Introduction to Node.js](#1-introduction-to-nodejs)
+    - [1.1. Setting Up Node.js](#11-setting-up-nodejs)
+    - [1.2. Modules and NPM](#12-modules-and-npm)
+2. [2. Building a Simple Server with Express.js](#2-building-a-simple-server-with-expressjs)
+    - [2.1. Setting Up Express.js](#21-setting-up-expressjs)
+    - [2.2. Creating Routes](#22-creating-routes)
+    - [2.3. Middleware](#23-middleware)
 
 ## 1. Introduction to Node.js
 
