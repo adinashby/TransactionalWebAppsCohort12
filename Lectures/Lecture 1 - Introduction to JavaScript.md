@@ -5,22 +5,22 @@ Welcome to the JavaScript lecture series! In this course, we will focus on JavaS
 
 ## Table of Contents
 
-1. [What is JavaScript?](#what-is-javascript)
-2. [Setting Up Your Development Environment](#setting-up-your-development-environment)
-3. [JavaScript Basics](#javascript-basics)
-    - [Syntax and Structure](#syntax-and-structure)
-    - [Variables and Data Types](#variables-and-data-types)
-    - [Operators](#operators)
-4. [Control Structures](#control-structures)
-    - [Conditional Statements](#conditional-statements)
-    - [Loops](#loops)
-5. [Functions](#functions)
-    - [Function Declaration](#function-declaration)
-    - [Arrow Functions](#arrow-functions)
-6. [Objects and Arrays](#objects-and-arrays)
-7. [JavaScript in the Browser](#javascript-in-the-browser)
-    - [DOM Manipulation](#dom-manipulation)
-    - [Event Handling](#event-handling)
+1. [What is JavaScript?](#1-what-is-javascript)
+2. [Setting Up Your Development Environment](#2-setting-up-your-development-environment)
+3. [JavaScript Basics](#3-javascript-basics)
+    - [3.1 Syntax and Structure](#31-syntax-and-structure)
+    - [3.2 Variables and Data Types](#32-variables-and-data-types)
+    - [3.3 Operators](#33-operators)
+4. [Control Structures](#4-control-structures)
+    - [4.1 Conditional Statements](#41-conditional-statements)
+    - [4.2 Loops](#42-loops)
+5. [Functions](#5-functions)
+    - [5.1 Function Declaration](#51-function-declaration)
+    - [5.2 Arrow Functions](#52-arrow-functions)
+6. [Objects and Arrays](#6-objects-and-arrays)
+7. [JavaScript in the Browser](#7-javascript-in-the-browser)
+    - [7.1 DOM Manipulation](#71-dom-manipulation)
+    - [7.2 Event Handling](#72-event-handling)
 
 ## 1. What is JavaScript?
 
