@@ -21,6 +21,12 @@ Welcome to the JavaScript lecture series! In this course, we will focus on JavaS
 7. [JavaScript in the Browser](#7-javascript-in-the-browser)
     - [7.1 DOM Manipulation](#71-dom-manipulation)
     - [7.2 Event Handling](#72-event-handling)
+    - [7.3 Local Storage](#73-local-storage)
+8. [Old Var, Use Strict, and Nullish Coalescing](#8-old-var-use-strict-and-nullish-coalescing)
+    - [8.1 Old Var](#81-old-var)
+    - [8.2 Use Strict](#82-use-strict)
+    - [8.3 Nullish Coalescing Operator `??`](#83-nullish-coalescing-operator-)
+9. [Differences between `==` and `===`](#9-differences-between--and-)
 
 ## 1. What is JavaScript?
 
@@ -137,12 +143,101 @@ The Document Object Model (DOM) represents the HTML structure of a web page.
 document.getElementById("demo").innerHTML = "Hello, World!";
 ```
 
-### 7.2. Event Handling
+You can also create new elements, modify existing ones, and remove them:
 
-Events are actions that occur when a user interacts with the browser.
+```javascript
+let newElement = document.createElement("p");
+newElement.textContent = "This is a new paragraph.";
+document.body.appendChild(newElement);
+
+let existingElement = document.getElementById("existingElement");
+existingElement.style.color = "blue";
+
+document.body.removeChild(existingElement);
+```
+
+### 7.2 Event Handling
+
+Events are actions that occur when a user interacts with the browser. You can add event listeners to handle these events.
 
 ```javascript
 document.getElementById("myButton").addEventListener("click", function() {
     alert("Button was clicked!");
 });
+
+document.getElementById("myInput").addEventListener("input", function(event) {
+    console.log(event.target.value);
+});
+```
+
+### 7.3 Local Storage
+
+Local Storage allows you to store data in the browser. The data persists even after the browser is closed.
+
+```javascript
+// Save data
+localStorage.setItem('username', 'JohnDoe');
+
+// Retrieve data
+let username = localStorage.getItem('username');
+console.log(username);
+
+// Remove data
+localStorage.removeItem('username');
+
+// Clear all data
+localStorage.clear();
+```
+
+## 8. Old Var, Use Strict, and Nullish Coalescing
+
+### 8.1 Old Var
+
+Before ES6, `var` was used to declare variables. Unlike `let` and `const`, `var` has function scope, which can lead to unexpected behavior.
+
+```javascript
+function example() {
+    var x = 10;
+    if (true) {
+        var x = 20; // same variable
+        console.log(x); // 20
+    }
+    console.log(x); // 20
+}
+```
+
+### 8.2 Use Strict
+
+The `"use strict"` directive helps catch common coding errors and "unsafe" actions such as defining global variables.
+
+```javascript
+"use strict";
+
+function example() {
+    x = 10; // This will cause an error because x is not declared
+}
+```
+
+### 8.3 Nullish Coalescing Operator `??`
+
+The nullish coalescing operator `??` returns the right-hand operand when the left-hand operand is `null` or `undefined`.
+
+```javascript
+let user;
+console.log(user ?? 'Guest'); // 'Guest'
+
+user = 'John';
+console.log(user ?? 'Guest'); // 'John'
+```
+
+## 9. Differences between `==` and `===`
+
+The `==` operator compares values for equality, performing type conversion if necessary. The `===` operator compares both value and type for strict equality.
+
+```javascript
+console.log(5 == '5');  // true (type conversion happens)
+console.log(5 === '5'); // false (no type conversion)
+
+console.log(null == undefined); // true
+console.log(null === undefined); // false
 ```
