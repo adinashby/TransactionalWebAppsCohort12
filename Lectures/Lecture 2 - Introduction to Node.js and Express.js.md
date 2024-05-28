@@ -7,7 +7,7 @@
     - [2.1. Setting Up Express.js](#21-setting-up-expressjs)
     - [2.2. Creating Routes](#22-creating-routes)
     - [2.3. Middleware](#23-middleware)
-3. [Node.js HTTP Server Example](#1-nodejs-http-server-example)
+3. [Node.js HTTP Server Example](#3-nodejs-http-server-example)
     - 3.1. [File Descriptions](#31-file-descriptions)
         - 3.1.1. [server.js](#311-serverjs)
         - 3.1.2. [index.html](#312-indexhtml)
@@ -77,7 +77,7 @@ app.use((req, res, next) => {
 });
 ```
 
-# 3. Node.js HTTP Server Example
+## 3. Node.js HTTP Server Example
 
 This example demonstrates a simple Node.js HTTP server that serves HTML files based on the request URL. The server is created using the built-in `http` module and serves three main pages: `index.html`, `about.html`, and a custom `404.html` for non-existent routes.
 
