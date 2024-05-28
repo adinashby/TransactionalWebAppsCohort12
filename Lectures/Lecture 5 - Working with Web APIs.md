@@ -1,40 +1,114 @@
 # Lecture 5: Web API Calls with Axios and Native Fetch
 
-Welcome to Lecture 5! In this session, we will learn how to make web API calls in a React.js application using both Axios and the native Fetch API. This tutorial will guide you through setting up your environment, making API calls, and handling responses.
+Welcome to Lecture 5! In this session, we will learn how to make web API calls in a React.js application using both Axios and the native Fetch API. This tutorial will guide you through setting up your environment, making API calls, and handling responses. We will start with simple API calls using Node.js and Axios to show the results in the console.
 
 ## Table of Contents
 
 1. [Introduction](#1-introduction)
-2. [Setting Up the Environment](#2-setting-up-the-environment)
-   - [2.1. Installing Node.js and npm](#21-installing-nodejs-and-npm)
-   - [2.2. Creating a New React Application](#22-creating-a-new-react-application)
-   - [2.3. Setting Up a Sample API](#23-setting-up-a-sample-api)
-3. [Making API Calls with Axios](#3-making-api-calls-with-axios)
-   - [3.1. Installing Axios](#31-installing-axios)
-   - [3.2. Using Axios to Fetch Data](#32-using-axios-to-fetch-data)
-   - [3.3. Using Axios to Post Data](#33-using-axios-to-post-data)
-4. [Making API Calls with Fetch](#4-making-api-calls-with-fetch)
-   - [4.1. Using Fetch to Get Data](#41-using-fetch-to-get-data)
-   - [4.2. Using Fetch to Post Data](#42-using-fetch-to-post-data)
-5. [Handling Errors and Responses](#5-handling-errors-and-responses)
-   - [5.1. Error Handling with Axios](#51-error-handling-with-axios)
-   - [5.2. Error Handling with Fetch](#52-error-handling-with-fetch)
-6. [Example Application: User List](#6-example-application-user-list)
-   - [6.1. Fetching User Data](#61-fetching-user-data)
-   - [6.2. Displaying User Data](#62-displaying-user-data)
-   - [6.3. Adding New Users](#63-adding-new-users)
+2. [Simple API Call with Node.js and Axios](#2-simple-api-call-with-nodejs-and-axios)
+   - [2.1. Setting Up the Environment](#21-setting-up-the-environment)
+   - [2.2. Making a GET Request with Axios](#22-making-a-get-request-with-axios)
+   - [2.3. Making a POST Request with Axios](#23-making-a-post-request-with-axios)
+3. [Setting Up the Environment for React.js](#3-setting-up-the-environment-for-reactjs)
+   - [3.1. Installing Node.js and npm](#31-installing-nodejs-and-npm)
+   - [3.2. Creating a New React Application](#32-creating-a-new-react-application)
+   - [3.3. Setting Up a Sample API](#33-setting-up-a-sample-api)
+4. [Making API Calls with Axios in React](#4-making-api-calls-with-axios-in-react)
+   - [4.1. Installing Axios](#41-installing-axios)
+   - [4.2. Using Axios to Fetch Data](#42-using-axios-to-fetch-data)
+   - [4.3. Using Axios to Post Data](#43-using-axios-to-post-data)
+5. [Making API Calls with Fetch in React](#5-making-api-calls-with-fetch-in-react)
+   - [5.1. Using Fetch to Get Data](#51-using-fetch-to-get-data)
+   - [5.2. Using Fetch to Post Data](#52-using-fetch-to-post-data)
+6. [Handling Errors and Responses](#6-handling-errors-and-responses)
+   - [6.1. Error Handling with Axios](#61-error-handling-with-axios)
+   - [6.2. Error Handling with Fetch](#62-error-handling-with-fetch)
+7. [Example Application: User List](#7-example-application-user-list)
+   - [7.1. Fetching User Data](#71-fetching-user-data)
+   - [7.2. Displaying User Data](#72-displaying-user-data)
+   - [7.3. Adding New Users](#73-adding-new-users)
 
 ## 1. Introduction
 
-In this lecture, we will create a simple React.js application that makes API calls to fetch and post data. We will learn how to use both Axios and the native Fetch API to interact with a back-end service.
+In this lecture, we will create a simple React.js application that makes API calls to fetch and post data. We will learn how to use both Axios and the native Fetch API to interact with a back-end service. Additionally, we will start with making simple API calls using Node.js and Axios to show the results in the console.
 
-## 2. Setting Up the Environment
+## 2. Simple API Call with Node.js and Axios
 
-### 2.1. Installing Node.js and npm
+### 2.1. Setting Up the Environment
 
 Ensure you have Node.js and npm installed on your machine. You can download and install them from [nodejs.org](https://nodejs.org/).
 
-### 2.2. Creating a New React Application
+Create a new directory for your project and initialize a new Node.js project.
+
+```bash
+mkdir api-call-demo
+cd api-call-demo
+npm init -y
+```
+
+Install Axios:
+
+```bash
+npm install axios
+```
+
+### 2.2. Making a GET Request with Axios
+
+Create a file named `get-request.js` and add the following code to make a GET request to the JSONPlaceholder API.
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('There was an error making the GET request:', error);
+  });
+```
+
+Run the script:
+
+```bash
+node get-request.js
+```
+
+### 2.3. Making a POST Request with Axios
+
+Create a file named `post-request.js` and add the following code to make a POST request to the JSONPlaceholder API.
+
+```javascript
+const axios = require('axios');
+
+const newPost = {
+  title: 'foo',
+  body: 'bar',
+  userId: 1,
+};
+
+axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('There was an error making the POST request:', error);
+  });
+```
+
+Run the script:
+
+```bash
+node post-request.js
+```
+
+## 3. Setting Up the Environment for React.js
+
+### 3.1. Installing Node.js and npm
+
+Ensure you have Node.js and npm installed on your machine. You can download and install them from [nodejs.org](https://nodejs.org/).
+
+### 3.2. Creating a New React Application
 
 Use the Create React App command-line tool to set up a new React project. This tool sets up the development environment and provides a good starting point for React applications.
 
@@ -44,13 +118,13 @@ cd api-demo
 npm start
 ```
 
-### 2.3. Setting Up a Sample API
+### 3.3. Setting Up a Sample API
 
 For demonstration purposes, we will use the JSONPlaceholder API, a free online REST API that you can use for testing and prototyping.
 
-## 3. Making API Calls with Axios
+## 4. Making API Calls with Axios in React
 
-### 3.1. Installing Axios
+### 4.1. Installing Axios
 
 Install Axios as a dependency in your React project.
 
@@ -58,7 +132,7 @@ Install Axios as a dependency in your React project.
 npm install axios
 ```
 
-### 3.2. Using Axios to Fetch Data
+### 4.2. Using Axios to Fetch Data
 
 Create a `UserList.js` component to fetch and display a list of users.
 
@@ -94,7 +168,7 @@ function UserList() {
 export default UserList;
 ```
 
-### 3.3. Using Axios to Post Data
+### 4.3. Using Axios to Post Data
 
 Create a `NewUserForm.js` component to add a new user.
 
@@ -135,9 +209,9 @@ function NewUserForm() {
 export default NewUserForm;
 ```
 
-## 4. Making API Calls with Fetch
+## 5. Making API Calls with Fetch in React
 
-### 4.1. Using Fetch to Get Data
+### 5.1. Using Fetch to Get Data
 
 Create a `UserListFetch.js` component to fetch and display a list of users using the Fetch API.
 
@@ -173,7 +247,7 @@ function UserListFetch() {
 export default UserListFetch;
 ```
 
-### 4.2. Using Fetch to Post Data
+### 5.2. Using Fetch to Post Data
 
 Create a `NewUserFormFetch.js` component to add a new user using the Fetch API.
 
@@ -212,7 +286,9 @@ function NewUserFormFetch() {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <button type="submit">Add User</button>
+      <button type="
+
+submit">Add User</button>
     </form>
   );
 }
@@ -220,9 +296,9 @@ function NewUserFormFetch() {
 export default NewUserFormFetch;
 ```
 
-## 5. Handling Errors and Responses
+## 6. Handling Errors and Responses
 
-### 5.1. Error Handling with Axios
+### 6.1. Error Handling with Axios
 
 Axios automatically detects errors and provides detailed error messages. You can handle errors using `.catch()` in the promise chain.
 
@@ -236,7 +312,7 @@ axios.get('https://jsonplaceholder.typicode.com/users')
   });
 ```
 
-### 5.2. Error Handling with Fetch
+### 6.2. Error Handling with Fetch
 
 Fetch requires manual error handling. You need to check the response status and throw an error if the request was not successful.
 
@@ -256,9 +332,9 @@ fetch('https://jsonplaceholder.typicode.com/users')
   });
 ```
 
-## 6. Example Application: User List
+## 7. Example Application: User List
 
-### 6.1. Fetching User Data
+### 7.1. Fetching User Data
 
 Create a new component `App.js` that uses the `UserList` and `NewUserForm` components.
 
@@ -279,7 +355,7 @@ function App() {
 export default App;
 ```
 
-### 6.2. Displaying User Data
+### 7.2. Displaying User Data
 
 The `UserList` component fetches and displays the list of users from the API.
 
@@ -307,8 +383,6 @@ function UserList() {
         {users.map(user => (
           <li key={user.id}>{user.name}</li>
         ))}
-
-
       </ul>
     </div>
   );
@@ -317,7 +391,7 @@ function UserList() {
 export default UserList;
 ```
 
-### 6.3. Adding New Users
+### 7.3. Adding New Users
 
 The `NewUserForm` component allows adding new users to the list.
 
@@ -360,4 +434,4 @@ export default NewUserForm;
 
 ## Conclusion
 
-You have now learned how to make web API calls in a React.js application using both Axios and the native Fetch API. We covered setting up the environment, making GET and POST requests, handling errors, and building a simple example application to demonstrate these concepts. This knowledge will help you build dynamic and interactive web applications that can communicate with back-end services to fetch and manage data. Happy coding!
+You have now learned how to make web API calls in a React.js application using both Axios and the native Fetch API. We covered setting up the environment, making GET and POST requests, handling errors, and building a simple example application to demonstrate these concepts. Additionally, we started with making simple API calls using Node.js and Axios to show the results in the console. This knowledge will help you build dynamic and interactive web applications that can communicate with back-end services to fetch and manage data. Happy coding!
