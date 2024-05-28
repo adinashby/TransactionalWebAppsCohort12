@@ -1,9 +1,9 @@
 ## Table of Contents
 
-1. [1. Introduction to Node.js](#1-introduction-to-nodejs)
+1. [Introduction to Node.js](#1-introduction-to-nodejs)
     - [1.1. Setting Up Node.js](#11-setting-up-nodejs)
     - [1.2. Modules and NPM](#12-modules-and-npm)
-2. [2. Building a Simple Server with Express.js](#2-building-a-simple-server-with-expressjs)
+2. [Building a Simple Server with Express.js](#2-building-a-simple-server-with-expressjs)
     - [2.1. Setting Up Express.js](#21-setting-up-expressjs)
     - [2.2. Creating Routes](#22-creating-routes)
     - [2.3. Middleware](#23-middleware)
@@ -247,3 +247,4 @@ The custom 404 error page served when a non-existent URL is requested.
 4. Open a terminal and navigate to the directory containing `server.js`.
 5. Run the server with the command: `node server.js`.
 6. Open a browser and navigate to `http://localhost:3000` to see the home page. Navigate to `/about` and other routes to see the respective pages.
+
