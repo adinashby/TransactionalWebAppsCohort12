@@ -7,7 +7,7 @@
     - [2.1. Setting Up Express.js](#21-setting-up-expressjs)
     - [2.2. Creating Routes](#22-creating-routes)
     - [2.3. Middleware](#23-middleware)
-3. [Node.js HTTP Server Example](#1-node.js-http-server-example)
+3. [Node.js HTTP Server Example](#1-nodejs-http-server-example)
     - 3.1. [File Descriptions](#31-file-descriptions)
         - 3.1.1. [server.js](#311-serverjs)
         - 3.1.2. [index.html](#312-indexhtml)
