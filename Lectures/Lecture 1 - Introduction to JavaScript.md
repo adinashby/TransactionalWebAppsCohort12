@@ -27,6 +27,20 @@ Welcome to the JavaScript lecture series! In this course, we will focus on JavaS
     - [8.2 Use Strict](#82-use-strict)
     - [8.3 Nullish Coalescing Operator `??`](#83-nullish-coalescing-operator-)
 9. [Differences between `==` and `===`](#9-differences-between--and-)
+10. [Introduction to File Operations](#10-introduction-to-file-operations)
+11. [Reading Files in Node.js](#11-reading-files-in-nodejs)
+    - [11.1. Reading Files Synchronously](#111-reading-files-synchronously)
+    - [11.2. Reading Files Asynchronously](#112-reading-files-asynchronously)
+12. [Writing Files in Node.js](#13-writing-files-in-nodejs)
+    - [12.1. Writing Files Synchronously](#121-writing-files-synchronously)
+    - [12.2. Writing Files Asynchronously](#122-writing-files-asynchronously)
+13. [Interacting with Files in the Browser](#14-interacting-with-files-in-the-browser)
+    - [13.1. Reading Files Using the File API](#131-reading-files-using-the-file-api)
+    - [13.2. Writing Files Using the File API](#132-writing-files-using-the-file-api)
+14. [Example Application: File Reader and Writer](#14-example-application-file-reader-and-writer)
+    - [14.1. Node.js File Operations](#141-nodejs-file-operations)
+    - [14.2. Browser File Operations](#142-browser-file-operations)
+
 
 ## 1. What is JavaScript?
 
@@ -240,4 +254,200 @@ console.log(5 === '5'); // false (no type conversion)
 
 console.log(null == undefined); // true
 console.log(null === undefined); // false
+```
+
+## 10. Introduction to File Operations
+
+File operations in JavaScript are essential for a variety of tasks such as data storage, data processing, and application configuration. On the server side, Node.js provides powerful modules like `fs` (file system) to interact with the file system. In the browser, the File API allows users to interact with files, such as reading their contents or uploading them to a server.
+
+## 11. Reading Files in Node.js
+
+### 11.1. Reading Files Synchronously
+
+Using the `fs` module in Node.js, you can read files synchronously. This means the code execution will wait until the file is completely read.
+
+```javascript
+const fs = require('fs');
+
+try {
+  const data = fs.readFileSync('example.txt', 'utf8');
+  console.log(data);
+} catch (err) {
+  console.error(err);
+}
+```
+
+### 11.2. Reading Files Asynchronously
+
+Reading files asynchronously is often preferred in Node.js because it does not block the event loop.
+
+```javascript
+const fs = require('fs');
+
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
+```
+
+## 12. Writing Files in Node.js
+
+### 12.1. Writing Files Synchronously
+
+You can write to files synchronously using the `writeFileSync` method. This will block the event loop until the file is written.
+
+```javascript
+const fs = require('fs');
+
+const data = 'Hello, World!';
+
+try {
+  fs.writeFileSync('example.txt', data, 'utf8');
+  console.log('File written successfully');
+} catch (err) {
+  console.error(err);
+}
+```
+
+### 12.2. Writing Files Asynchronously
+
+Writing files asynchronously allows other operations to continue while the file is being written.
+
+```javascript
+const fs = require('fs');
+
+const data = 'Hello, World!';
+
+fs.writeFile('example.txt', data, 'utf8', (err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('File written successfully');
+});
+```
+
+## 13. Interacting with Files in the Browser
+
+### 13.1. Reading Files Using the File API
+
+The File API allows you to read files selected by the user. This is useful for file uploads and processing files on the client side.
+
+```html
+<input type="file" id="fileInput" />
+<script>
+  document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      console.log(e.target.result);
+    };
+
+    reader.readAsText(file);
+  });
+</script>
+```
+
+### 13.2. Writing Files Using the File API
+
+Writing files on the client side typically involves creating files for download.
+
+```html
+<button id="downloadButton">Download File</button>
+<script>
+  document.getElementById('downloadButton').addEventListener('click', function() {
+    const data = 'Hello, World!';
+    const blob = new Blob([data], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'example.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+</script>
+```
+
+## 14. Example Application: File Reader and Writer
+
+### 14.1. Node.js File Operations
+
+Create a simple Node.js script that reads from a file and writes to a new file.
+
+```javascript
+const fs = require('fs');
+
+const inputFile = 'input.txt';
+const outputFile = 'output.txt';
+
+// Read file
+fs.readFile(inputFile, 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('File content:', data);
+
+  // Write to a new file
+  fs.writeFile(outputFile, data, 'utf8', (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('File written successfully');
+  });
+});
+```
+
+### 14.2. Browser File Operations
+
+Create a simple HTML page that allows users to read a file and download its content.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Reader and Writer</title>
+</head>
+<body>
+  <input type="file" id="fileInput" />
+  <button id="downloadButton">Download File</button>
+
+  <script>
+    let fileContent = '';
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        fileContent = e.target.result;
+        console.log(fileContent);
+      };
+
+      reader.readAsText(file);
+    });
+
+    document.getElementById('downloadButton').addEventListener('click', function() {
+      const blob = new Blob([fileContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'output.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>
 ```

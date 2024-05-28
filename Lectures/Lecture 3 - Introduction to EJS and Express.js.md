@@ -1,3 +1,7 @@
+# Lecture 3: Getting Started with EJS
+
+EJS (Embedded JavaScript) is a simple templating language that lets you generate HTML markup with plain JavaScript. This tutorial will guide you through the basics of EJS and how to integrate it with an Express.js application.
+
 ## Table of Contents
 
 1. [Introduction to EJS](#1-introduction-to-ejs)
@@ -31,7 +35,7 @@
 
 ## 1. Introduction to EJS
 
-EJS (Embedded JavaScript) is a simple templating language that lets you generate HTML markup with plain JavaScript. This tutorial will guide you through the basics of EJS and how to integrate it with an Express.js application.
+EJS is a templating language that enables you to create HTML templates with embedded JavaScript. It helps in dynamically generating HTML pages and is often used with Express.js to render views.
 
 ## 2. Setting Up the Environment
 
