@@ -380,4 +380,5 @@ The custom 404 error page template rendered when a non-existent URL is requested
 4. Open a terminal and navigate to the directory containing `app.js`.  
 5. Install the dependencies with the command: `npm install`.  
 6. Run the server with the command: `npm start` or `node app.js`.  
-7. Open a browser and navigate to `http://localhost:3000` to see the home page Navigate to `/about` and other routes to see the respective pages.  
+7. Open a browser and navigate to `http://localhost:3000` to see the home page.  
+8. Navigate to `/about` and other routes to see the respective pages.  
