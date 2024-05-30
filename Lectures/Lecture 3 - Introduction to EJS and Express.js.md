@@ -27,10 +27,9 @@ EJS (Embedded JavaScript) is a simple templating language that lets you generate
         - 6.1.2. [app.js](#612-appjs)
         - 6.1.3. [package.json](#613-packagejson)
         - 6.1.4. [package-lock.json](#614-package-lockjson)
-        - 6.1.5. [server.js](#615-serverjs)
-        - 6.1.6. [index.ejs](#616-indexejs)
-        - 6.1.7. [about.ejs](#617-aboutejs)
-        - 6.1.8. [404.ejs](#618-404ejs)
+        - 6.1.5. [index.ejs](#615-indexejs)
+        - 6.1.6. [about.ejs](#616-aboutejs)
+        - 6.1.7. [404.ejs](#617-404ejs)
     - 6.2. [How to Run](#62-how-to-run)
 
 ## 1. Introduction to EJS
@@ -309,63 +308,7 @@ Key Features:
 
 The `package-lock.json` file ensures consistent dependency installations. It locks the versions of the project’s dependencies.
 
-#### 6.1.5. server.js
-
-A server file created using the built-in `http` module to serve HTML files. It serves different pages based on the URL and handles 404 errors with a custom page.
-
-Key Features:
-- Uses the `http` and `fs` modules to create a server and read files from the filesystem.
-- Sets the appropriate content type for HTML responses.
-- Handles routing for the home page (`/`), about page (`/about`), and redirects from `/about-us` to `/about`.
-- Returns a custom 404 page for any other URLs.
-
-```javascript
-const http = require("http");
-const fs = require("fs");
-
-const server = http.createServer((req, res) => {
-    res.setHeader("Content-Type", "text/html");
-    let path = "./views/";
-
-    switch(req.url) {
-        case "/":
-            res.statusCode = 200;
-            path += "index.html";
-            break;
-        case "/about":
-            res.statusCode = 200;
-            path += "about.html";
-            break;
-        case "/about-us":
-            res.statusCode = 301;
-            res.setHeader("Location", "/about");
-            res.end();
-            break;
-        default:
-            res.statusCode = 404;
-            path += "404.html";
-            break;
-    }
-
-    fs.readFile(path, (err, data) => {
-        if(err) {
-            console.log(err);
-            res.end();
-        } else {
-            res.write(data);
-            res.end();
-        }
-    })
-
-    // console.log(req.url, req.method);
-});
-
-server.listen(3000, "localhost", () => {
-    console.log("Listening for requests on port 3000");
-})
-```
-
-#### 6.1.6. index.ejs
+#### 6.1.5. index.ejs
 
 The home page template rendered when the root URL (`/`) is requested. It displays a list of blog titles and snippets.
 
@@ -391,7 +334,7 @@ The home page template rendered when the root URL (`/`) is requested. It display
 </html>
 ```
 
-#### 6.1.7. about.ejs
+#### 6.1.6. about.ejs
 
 The about page template rendered when the `/about` URL is requested.
 
@@ -410,7 +353,7 @@ The about page template rendered when the `/about` URL is requested.
 </html>
 ```
 
-#### 6.1.8. 404.ejs
+#### 6.1.7. 404.ejs
 
 The custom 404 error page template rendered when a non-existent URL is requested.
 
@@ -431,12 +374,10 @@ The custom 404 error page template rendered when a non-existent URL is requested
 
 ### 6.2. How to Run
 
-1. Ensure you have Node.js installed on your machine.
-2. Place the `app.js`, `package.json`, `package-lock.json`, and `.gitignore` files in the root directory.
-3. Create a `views` directory and place the `index.ejs`,
-
- `about.ejs`, and `404.ejs` files inside it.
-4. Open a terminal and navigate to the directory containing `app.js`.
-5. Install the dependencies with the command: `npm install`.
-6. Run the server with the command: `npm start` or `node app.js`.
-7. Open a browser and navigate to `http://localhost:3000` to see the home page. Navigate to `/about` and other routes to see the respective pages.
+1. Ensure you have Node.js installed on your machine.  
+2. Place the `app.js`, `package.json`, `package-lock.json`, and `.gitignore` files in the root directory.  
+3. Create a `views` directory and place the `index.ejs`, `about.ejs`, and `404.ejs` files inside it.  
+4. Open a terminal and navigate to the directory containing `app.js`.  
+5. Install the dependencies with the command: `npm install`.  
+6. Run the server with the command: `npm start` or `node app.js`.  
+7. Open a browser and navigate to `http://localhost:3000` to see the home page Navigate to `/about` and other routes to see the respective pages.  
