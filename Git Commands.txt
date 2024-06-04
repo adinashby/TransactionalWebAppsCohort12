@@ -13,4 +13,4 @@ git push
 
 git checkout <commit id>
 *after you are done exploring*
-git checkout master
+git checkout master  
