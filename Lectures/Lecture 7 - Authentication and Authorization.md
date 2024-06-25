@@ -23,6 +23,7 @@ Welcome to Lecture 7! In this lecture, we'll explore how to implement authentica
     - [4.3 Google OAuth Authentication](#43-google-oauth-authentication)
       - [4.3.1 Google Login Component](#431-google-login-component)
     - [4.4 Integrating Components](#44-integrating-components)
+    - [4.5 Package.json for React](#45-packagejson-for-react)
 5. [Environment Variables](#5-environment-variables)
 6. [Creating Access Tokens](#6-creating-access-tokens)
 7. [Conclusion](#7-conclusion)
