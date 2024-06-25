@@ -23,7 +23,9 @@ Welcome to Lecture 7! In this lecture, we'll explore how to implement authentica
     - [4.3 Google OAuth Authentication](#43-google-oauth-authentication)
       - [4.3.1 Google Login Component](#431-google-login-component)
     - [4.4 Integrating Components](#44-integrating-components)
-5. [Conclusion](#5-conclusion)
+5. [Environment Variables](#environment-variables)
+6. [Creating Access Tokens](#creating-access-tokens)
+7. [Conclusion](#7-conclusion)
 
 ## 1. Introduction
 
@@ -79,6 +81,8 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 ### 3.2 Email/Password Authentication
 
+Email/password authentication involves creating a user model, setting up routes for registration and login, and hashing passwords for security.
+
 #### 3.2.1 User Model
 
 Create a `models` directory and a `User.js` file inside it:
@@ -104,7 +108,7 @@ module.exports = mongoose.model('User', UserSchema);
 
 #### 3.2.2 Auth Routes
 
-Create a `routes` directory and an `auth.js` file inside it:
+Create a routes directory and an auth.js file inside it. This file will handle user registration and login:
 
 ```javascript
 const express = require('express');
@@ -172,6 +176,8 @@ app.use('/api/auth', authRoutes);
 
 ### 3.3 Google OAuth Authentication
 
+Google OAuth authentication allows users to log in using their Google account. This involves setting up Passport.js with the Google strategy and creating routes for handling the OAuth process.
+
 #### 3.3.1 Passport Configuration
 
 Install the passport dependencies:
@@ -214,7 +220,7 @@ passport.deserializeUser((id, done) => {
 
 #### 3.3.2 Auth Routes
 
-Update `auth.js`:
+Update `auth.js` to include Google OAuth routes:
 
 ```javascript
 const passport = require('passport');
@@ -385,9 +391,68 @@ const App = () => (
 export default App;
 ```
 
-## 5. Conclusion
+## 5. Environment Variables
 
-In this lecture, we've covered how to set up a basic authentication system using email/password and Google OAuth in a project with React.js for the front-end and Express.js for the back-end. This setup provides a foundation for adding more authentication methods and further securing your application.
+To securely store sensitive information such as database connection strings and API keys, we use environment variables. Create a `.env` file in the root of your project and add the following variables:
+
+```env
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/myDatabase?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 ```
 
-This lecture covers the basics of setting up authentication in a project using React.js and Express.js. It includes setting up the backend with Express.js, implementing email/password authentication, configuring Google OAuth with Passport.js, and integrating these features into a React.js frontend.
+Ensure that the `.env` file is listed in your `.gitignore` file to prevent it from being committed to version control.
+
+## 6. Creating Access Tokens
+
+Access tokens are used to authenticate API requests. In this lecture, we use JSON Web Tokens (JWT) for this purpose. Here's how to create and verify JWT tokens:
+
+### Creating JWT Tokens
+
+In the registration and login routes, we create a JWT token as follows:
+
+```javascript
+const payload = { user: { id: user.id } };
+jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+    if (err) throw err;
+    res.json({ token });
+});
+```
+
+### Verifying JWT Tokens
+
+To protect routes, create a middleware to verify the JWT token:
+
+```javascript
+const jwt = require('jsonwebtoken');
+
+function auth(req, res, next) {
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded.user;
+        next();
+    } catch (err) {
+        res.status(401).json({ msg: 'Token is not valid' });
+    }
+}
+
+module.exports = auth;
+```
+
+Use this middleware to protect routes:
+
+```javascript
+const auth = require('./middleware/auth');
+
+router.get('/protected', auth, (req, res) => {
+    res.send('This is a protected route');
+});
+```
+
+## 7. Conclusion
+
+In this lecture, we've covered how to set up a basic authentication system using email/password and Google OAuth in a project with React.js for the front-end and Express.js for the back-end. This setup provides a foundation for adding more authentication methods and further securing your application.
