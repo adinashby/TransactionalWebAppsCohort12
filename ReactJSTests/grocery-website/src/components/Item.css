@@ -1,0 +1,19 @@
+.item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+  }
+  
+  .item button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .item button:hover {
+    background-color: #218838;
+  }
+  
