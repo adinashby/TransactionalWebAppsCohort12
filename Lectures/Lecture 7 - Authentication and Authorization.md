@@ -26,7 +26,8 @@ Welcome to Lecture 7! In this lecture, we'll explore how to implement authentica
     - [4.5 Package.json for React](#45-packagejson-for-react)
 5. [Environment Variables](#5-environment-variables)
 6. [Creating Access Tokens](#6-creating-access-tokens)
-7. [Conclusion](#7-conclusion)
+7. [Creating Secret Keys](#7-creating-secret-keys)
+8. [Conclusion](#8-conclusion)
 
 ## 1. Introduction
 
@@ -453,7 +454,14 @@ router.get('/protected', auth, (req, res) => {
     res.send('This is a protected route');
 });
 ```
+## 7. Creating Secret Keys
 
-## 7. Conclusion
+Use the following code in your terminal to create a new secret key:
+
+```
+node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
+```
+
+## 8. Conclusion
 
 In this lecture, we've covered how to set up a basic authentication system using email/password and Google OAuth in a project with React.js for the front-end and Express.js for the back-end. This setup provides a foundation for adding more authentication methods and further securing your application.
