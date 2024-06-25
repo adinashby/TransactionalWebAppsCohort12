@@ -29,41 +29,6 @@ Welcome to Lecture 7! In this lecture, we'll explore how to implement authentica
 7. [Creating Secret Keys](#7-creating-secret-keys)
 8. [Conclusion](#8-conclusion)
 
-# Lecture 7: Implementing Authentication in a React.js and Express.js Project
-
-## Introduction
-
-Welcome to Lecture 7! In this lecture, we'll explore how to implement authentication in a full-stack project using React.js for the front-end and Express.js for the back-end. Authentication is a crucial aspect of web applications, ensuring that users can securely access and interact with your application. We will cover both email/password authentication and Google OAuth authentication. By the end of this lecture, you'll have a solid understanding of how to set up and integrate these authentication methods into your projects.
-
-## Table of Contents
-
-- [Lecture 7: Implementing Authentication in a React.js and Express.js Project](#lecture-7-implementing-authentication-in-a-reactjs-and-expressjs-project)
-  - [Introduction](#introduction)
-  - [Table of Contents](#table-of-contents)
-  - [1. Introduction](#1-introduction)
-  - [2. Project Setup](#2-project-setup)
-  - [3. Backend: Express.js](#3-backend-expressjs)
-    - [3.1 Setting up Express.js](#31-setting-up-expressjs)
-    - [3.2 Email/Password Authentication](#32-emailpassword-authentication)
-      - [3.2.1 User Model](#321-user-model)
-      - [3.2.2 Auth Routes](#322-auth-routes)
-    - [3.3 Google OAuth Authentication](#33-google-oauth-authentication)
-      - [3.3.1 Passport Configuration](#331-passport-configuration)
-  - [4. Frontend: React.js](#4-frontend-reactjs)
-    - [4.1 Setting up React.js](#41-setting-up-reactjs)
-    - [4.2 Email/Password Authentication](#42-emailpassword-authentication)
-      - [4.2.1 Register and Login Components](#421-register-and-login-components)
-    - [4.3 Google OAuth Authentication](#43-google-oauth-authentication)
-      - [4.3.1 Google Login Component](#431-google-login-component)
-    - [4.4 Integrating Components](#44-integrating-components)
-    - [4.5 Package.json for React](#45-packagejson-for-react)
-  - [5. Environment Variables](#5-environment-variables)
-  - [6. Creating Access Tokens](#6-creating-access-tokens)
-    - [Creating JWT Tokens](#creating-jwt-tokens)
-    - [Verifying JWT Tokens](#verifying-jwt-tokens)
-  - [7. Creating Access Token](#7-creating-access-token)
-  - [8. Conclusion](#8-conclusion)
-
 ## 1. Introduction
 
 In this lecture, we'll cover how to implement authentication using email/password and Google OAuth in a project that has React.js on the front-end and Express.js on the back-end.
